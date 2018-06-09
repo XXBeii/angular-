@@ -26,6 +26,14 @@ import { Injectable } from '@angular/core';
 //   providedIn: 'root'
 // })
 export class MailService {
-  message: string  ='该消息来自MailService';
+
+  // message: string  ='该消息来自MailService';
+
+  messages: string[] =[
+    '天之骄子，ngFor的使用',
+    'Shadows，ngFor的使用',
+    'Keriy，ngFor的使用'
+  ];
+
   constructor() { }
 }
