@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { SimpleFormComponent } from './simple-form/simple-form.component';
 
+import {MailService} from "./mail.service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -12,7 +14,10 @@ import { SimpleFormComponent } from './simple-form/simple-form.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    MailService,
+    {provide: 'apiUrl', useValue: 'https://jsonplaceholder.typicode.com/'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
