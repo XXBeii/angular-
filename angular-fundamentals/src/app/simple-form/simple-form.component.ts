@@ -38,7 +38,7 @@ import { Component, OnInit, Input } from '@angular/core';
     <div>
       这里是@Input引入的数据：{{message}}
       <br>
-      <input #myInput type="text" (keydown)="onEnter($event, myInput.value)">
+      <input #myInput type="text" (keydown)="onEnter($event, myInput.value)" [(ngModel)]="message">
       <div>
         <button (click)="onClick($event,myInput.value)">获取输入框内的值、输入框元素、获取鼠标点击事件</button>
         <!-- 输出输入框内的值 -->
