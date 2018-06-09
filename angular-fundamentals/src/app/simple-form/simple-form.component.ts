@@ -13,7 +13,7 @@
  * ***/
 
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 /***
  * 
@@ -36,22 +36,14 @@ import { Component, OnInit } from '@angular/core';
   // templateUrl: './simple-form.component.html',
   template: `
     <div>
-      <input #myInput type="text">
+      这里是@Input引入的数据：{{message}}
+      <br>
+      <input #myInput type="text" (keydown)="onEnter($event, myInput.value)">
       <div>
-        <button (click)="onClick(myInput.value)">获取输入框内的值</button>
+        <button (click)="onClick($event,myInput.value)">获取输入框内的值、输入框元素、获取鼠标点击事件</button>
         <!-- 输出输入框内的值 -->
-        <span>{{myInput.value}}</span>
-      </div>
-      <br>
-      <div>
-        <button (click)="onClick(myInput)">获取输入框元素</button>
-        <!-- 输出 <input type="text"> -->
-      </div>
-      <br>
-      <div>
-        <input #myInput type="text" (keydown)="onEnter($event, myInput.value)">获取按下键盘事件
-        <button (click)="eventOnClick($event, myInput.value)">获取鼠标点击事件</button>
-        <!-- 输出 <input type="text"> -->
+        <br>
+        <span>这里是输入框内的值：{{myInput.value}}</span>
       </div>
       <br> 
     </div>
@@ -60,11 +52,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SimpleFormComponent implements OnInit {
 
-  onClick(value) {
-    console.log(value);
-  }
+  @Input()message: string;
 
-  eventOnClick(event, value) {
+  onClick(event,value) {
     console.log(event);
     console.log(value);
   }

@@ -26,12 +26,15 @@ import {MailService} from "./mail.service";
   template: `
     <h3>{{title}}</h3>
     <div>
-      <app-simple-form></app-simple-form>
-      <ul>
-        <li *ngFor="let message of mailService.messages; index as i;">
-          {{i}} - {{message}}
-        </li>
-      </ul>
+      <app-simple-form *ngFor="let message of mailService.messages;"
+      [message]="message"></app-simple-form>
+      <!-- 
+        <ul>
+          <li *ngFor="let message of mailService.messages; index as i;">
+            {{i}} - {{message}}
+          </li>
+        </ul>
+      -->
       <p>API_URL: {{apiUrl}}</p>
     </div>
   `,
