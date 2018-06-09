@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {MailService} from "./mail.service";
+import { MailService } from "./mail.service";
 
 /***
  * 
@@ -27,24 +27,37 @@ import {MailService} from "./mail.service";
     <h3>{{title}}</h3>
     <div>
       <app-simple-form *ngFor="let message of mailService.messages;"
-      [message]="message"></app-simple-form>
-      <!-- 
+        [message]="message.text"
+        (update)="onUpdate(message.id, $event.text)">
+      </app-simple-form>
+      <br>
+      <br>
+      <div>
+      这里展示service的数据：
+      <br>
         <ul>
           <li *ngFor="let message of mailService.messages; index as i;">
-            {{i}} - {{message}}
+            {{i}} - {{message.text}}
           </li>
         </ul>
-      -->
+      </div>
+
       <p>API_URL: {{apiUrl}}</p>
     </div>
   `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'Hello, Angular';
+
+  onUpdate(id, text) {
+    this.mailService.update(id, text);
+  }
+
   constructor(
     @Inject('apiUrl') private apiUrl,
-    private mailService: MailService) {}
+    private mailService: MailService) { }
 
   /***
    * 

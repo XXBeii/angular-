@@ -13,7 +13,7 @@
  * ***/
 
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 /***
  * 
@@ -45,6 +45,9 @@ import { Component, OnInit, Input } from '@angular/core';
         <br>
         <span>这里是输入框内的值：{{myInput.value}}</span>
       </div>
+      <div>
+        <button (click)="update.emit({text: message})">更新</button>
+      </div>
       <br> 
     </div>
   `,
@@ -52,7 +55,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SimpleFormComponent implements OnInit {
 
-  @Input()message: string;
+  @Input() message: string;
+  // 使用@Output装饰器
+  @Output() update = new EventEmitter<{text: string}>();
 
   onClick(event,value) {
     console.log(event);
