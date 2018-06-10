@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   // templateUrl: './app.component.html',
   template: `
   <h2>Hello, Angular</h2>
-  <h2 simpleDirective>Hello, Angular</h2>
+  <h2 simpleDirective [greet]="'hhhh'">Hello, Angular</h2>
   `,
   styleUrls: ['./app.component.css']
 })
