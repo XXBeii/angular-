@@ -1,5 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MailService } from "./mail.service";
+// import { Observable } from 'rxjs';
+// import 'rxjs/add/observable/of';
 
 /***
  * 
@@ -44,6 +46,13 @@ import { MailService } from "./mail.service";
 
       <p>API_URL: {{apiUrl}}</p>
     </div>
+
+    <ng-template #fetching>
+      <p>Fetching...</p>
+    </ng-template>
+    <p *ngIf="auth | async; else fetching; let user">
+        {{user.username }}
+    </p>
   `,
   styleUrls: ['./app.component.css']
 })
@@ -53,6 +62,12 @@ export class AppComponent {
 
   onUpdate(id, text) {
     this.mailService.update(id, text);
+  }
+  
+  // auth: Observable<{}>;
+  ngOnInit() {
+  //  this.auth = Observable.of({ username: 'semlinker', password: 'segmentfault' })
+  //   .delay(new Date(Date.now() + 2000)); 
   }
 
   constructor(

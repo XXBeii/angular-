@@ -50,6 +50,10 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
       </div>
       <br> 
     </div>
+    <div>setter & getter</div>
+    <p>当前值: {{ count }} </p>
+    <button (click)="increment()"> + </button>
+    <button (click)="decrement()"> - </button>
   `,
   styleUrls: ['./simple-form.component.css']
 })
@@ -68,6 +72,28 @@ export class SimpleFormComponent implements OnInit {
     console.log(event);
     console.log(value);
   }
+
+  _count: number = 0; // 默认私有属性以下划线开头，不是必须也可以使用$count
+  biggerThanTen: boolean = false;
+
+  @Input()
+  set count (num: number) {
+      this.biggerThanTen = num > 10;
+      this._count = num;
+  }
+
+  get count(): number {
+      return this._count;
+  }
+
+  increment() {
+      this.count++;
+  }
+
+  decrement() {
+      this.count--;
+  }
+
 
   constructor() { }
 
