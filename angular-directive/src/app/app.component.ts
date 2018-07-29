@@ -6,8 +6,8 @@ import { Component } from '@angular/core';
   template: `
   <h2>Hello, Angular</h2>
   <h2 simpleDirective [greet]="'hhhh'">Hello, Angular</h2>
-  `,
-  styleUrls: ['./app.component.css']
+  <checked-iput></checked-iput>
+  `
 })
 export class AppComponent {
   title = 'app';
