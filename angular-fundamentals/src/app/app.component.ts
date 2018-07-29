@@ -76,5 +76,60 @@ export class AppComponent {
    * 
    * 
    * ***/
+  ngOnInit() {
+    console.log('init')
+    const timeout = ms => new Promise((resolve, reject) => {
+      setTimeout(() => {
+       resolve();
+      }, ms);
+     });
+     
+    const ajax1 = () => timeout(2000).then(() => {
+     console.log('1');
+     return 1;
+    });
+    
+    const ajax2 = () => timeout(1000).then(() => {
+     console.log('2');
+     return 2;
+    });
+
+    const ajax3 = () => timeout(2000).then(() => {
+     console.log('3');
+     return 3;
+    });
+    const ajax4 = () => timeout(100).then(() => {
+     console.log('4');
+     return 4;
+    });
+    const ajax5 = () => timeout(600).then(() => {
+     console.log('5');
+     return 5;
+    });
+    
+    const mergePromise = ajaxArray => {
+      return new Promise((resolve, reject) => {
+        let l = ajaxArray.length;
+        let i = 0;
+        let data = [];
+        function eachPromise(P) {
+         P.then(Pdata => {
+           data.push(Pdata)
+           if (i < l-1) {
+             eachPromise(ajaxArray[++i]())
+            } else {
+              resolve(data)
+            }
+          })
+        }
+        eachPromise(ajaxArray[i]())
+      })
+    };
+
+     mergePromise([ajax1, ajax2, ajax3, ajax4, ajax5]).then(data => {
+      console.log('done');
+      console.log(data); // data 为 [1, 2, 3]
+     });
+  }
 
 }
